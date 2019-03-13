@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatImageView
 
+
 /**
  * Created by Devlomi on 13/12/2017.
  */
@@ -16,7 +17,7 @@ class RecordButton : AppCompatImageView, View.OnTouchListener, View.OnClickListe
 
     private var scaleAnim: ScaleAnim? = null
     private var recordView: RecordView? = null
-    private var isListenForRecord = true
+    private var listenForRecord = true
     private var onRecordClickListener: OnRecordClickListener? = null
 
 
@@ -67,7 +68,7 @@ class RecordButton : AppCompatImageView, View.OnTouchListener, View.OnClickListe
         setClip(this)
     }
 
-    private fun setClip(v: View) {
+    fun setClip(v: View) {
         if (v.parent == null) {
             return
         }
@@ -90,7 +91,7 @@ class RecordButton : AppCompatImageView, View.OnTouchListener, View.OnClickListe
 
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
-        if (isListenForRecord) {
+        if (listenForRecord) {
             when (event.action) {
 
                 MotionEvent.ACTION_DOWN -> recordView!!.onActionDown(v as RecordButton, event)
@@ -102,17 +103,17 @@ class RecordButton : AppCompatImageView, View.OnTouchListener, View.OnClickListe
             }
 
         }
-        return isListenForRecord
+        return listenForRecord
 
 
     }
 
 
-    fun startScale() {
+     fun startScale() {
         scaleAnim!!.start()
     }
 
-    fun stopScale() {
+     fun stopScale() {
         scaleAnim!!.stop()
     }
 
@@ -125,4 +126,13 @@ class RecordButton : AppCompatImageView, View.OnTouchListener, View.OnClickListe
         if (onRecordClickListener != null)
             onRecordClickListener!!.onClick(v)
     }
+
+    fun setListenForRecord(listenForRecord: Boolean) {
+        this.listenForRecord = listenForRecord
+    }
+
+    fun isListenForRecord(): Boolean {
+        return listenForRecord
+    }
+
 }

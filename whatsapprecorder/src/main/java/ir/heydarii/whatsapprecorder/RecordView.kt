@@ -306,8 +306,6 @@ class RecordView : RelativeLayout {
 
 
         } else {
-            if (recordListener != null && !isSwiped)
-                recordListener!!.onFinish(elapsedTime, audioPath)
 
             animationHelper!!.setStartRecorded(false)
 
@@ -330,6 +328,9 @@ class RecordView : RelativeLayout {
         counterTime!!.stop()
         slideToCancelLayout!!.stopShimmerAnimation()
 
+
+        if (recordListener != null && !isSwiped)
+            recordListener!!.onFinish(elapsedTime, audioPath)
 
     }
 

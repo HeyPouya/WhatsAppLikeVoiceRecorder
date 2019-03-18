@@ -315,7 +315,8 @@ class RecordView : RelativeLayout {
 
         }
 
-        recorder?.stopRecording()
+        if (recorder != null)
+            recorder?.stopRecording()
 
         //if user has swiped then do not hide SmallMic since it will be hidden after swipe Animation
         hideViews(!isSwiped)

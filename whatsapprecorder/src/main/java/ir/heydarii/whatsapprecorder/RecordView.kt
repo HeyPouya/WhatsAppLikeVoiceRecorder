@@ -300,14 +300,14 @@ class RecordView : RelativeLayout {
             if (recordListener != null)
                 recordListener!!.onLessThanSecond()
 
-            animationHelper!!.setStartRecorded(false)
+            animationHelper?.setStartRecorded(false)
 
             playSound(RECORD_ERROR)
 
 
         } else {
 
-            animationHelper!!.setStartRecorded(false)
+            animationHelper?.setStartRecorded(false)
 
 
             if (!isSwiped)
@@ -322,15 +322,15 @@ class RecordView : RelativeLayout {
 
 
         if (!isSwiped)
-            animationHelper!!.clearAlphaAnimation(true)
+            animationHelper?.clearAlphaAnimation(true)
 
-        animationHelper!!.moveRecordButtonAndSlideToCancelBack(recordBtn, slideToCancelLayout!!, initialX, difX)
-        counterTime!!.stop()
+        animationHelper?.moveRecordButtonAndSlideToCancelBack(recordBtn, slideToCancelLayout!!, initialX, difX)
+        counterTime?.stop()
         slideToCancelLayout!!.stopShimmerAnimation()
 
 
         if (recordListener != null && !isSwiped)
-            recordListener!!.onFinish(elapsedTime, audioPath)
+            recordListener?.onFinish(elapsedTime, audioPath)
 
     }
 

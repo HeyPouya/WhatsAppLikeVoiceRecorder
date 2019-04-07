@@ -27,6 +27,7 @@ import java.util.*
 
 /**
  * Created by Devlomi on 24/08/2017.
+ * Edited and added some features by Pouya Heydari
  */
 
 class RecordView : RelativeLayout {
@@ -156,7 +157,7 @@ class RecordView : RelativeLayout {
 
 
     private fun isLessThanOneSecond(time: Long): Boolean {
-        return time <= 1000
+        return time <= 1200
     }
 
 

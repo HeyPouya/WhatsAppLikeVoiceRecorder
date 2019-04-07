@@ -1,6 +1,5 @@
 package ir.heydarii.whatsapplikevoicerecorder
 
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ir.heydarii.whatsapprecorder.OnRecordListener
@@ -12,8 +11,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        record_button.setRecordView(record_view)
-
 
         record_view.setOnRecordListener(object : OnRecordListener {
             override fun onStart() {
@@ -21,6 +18,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onCancel() {
+
             }
 
             override fun onFinish(recordTime: Long, audioPath: String) {

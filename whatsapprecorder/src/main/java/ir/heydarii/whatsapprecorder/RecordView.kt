@@ -196,6 +196,7 @@ class RecordView : RelativeLayout {
         animationHelper!!.resetSmallMic()
 
 
+
         recordBtn.startScale()
         slideToCancelLayout!!.startShimmerAnimation()
 
@@ -284,7 +285,6 @@ class RecordView : RelativeLayout {
                         .setDuration(0)
                         .start()
 
-
                 }
 
 
@@ -294,8 +294,6 @@ class RecordView : RelativeLayout {
     }
 
     fun onActionUp(recordBtn: RecordButton) {
-
-        elapsedTime = System.currentTimeMillis() - startTime
 
         if (!isLessThanSecondAllowed && isLessThanOneSecond(elapsedTime) && !isSwiped) {
             if (recordListener != null)
@@ -307,16 +305,13 @@ class RecordView : RelativeLayout {
 
 
         } else {
-
             animationHelper?.setStartRecorded(false)
-
 
             if (!isSwiped)
                 playSound(RECORD_FINISHED)
-
         }
 
-        if (recorder != null){
+        if (recorder != null) {
             recorder?.stopRecording()
             recorder = null
         }

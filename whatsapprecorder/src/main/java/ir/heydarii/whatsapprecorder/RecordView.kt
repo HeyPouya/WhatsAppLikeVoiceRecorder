@@ -231,7 +231,7 @@ class RecordView : RelativeLayout {
 
             }
 
-        }, 1000)
+        }, 1000,1000)
         isSwiped = false
         startRecording()
 

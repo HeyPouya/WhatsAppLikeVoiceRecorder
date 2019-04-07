@@ -294,23 +294,6 @@ class RecordView : RelativeLayout {
     }
 
     fun onActionUp(recordBtn: RecordButton) {
-
-        if (!isLessThanSecondAllowed && isLessThanOneSecond(elapsedTime) && !isSwiped) {
-            if (recordListener != null)
-                recordListener!!.onLessThanSecond()
-
-            animationHelper?.setStartRecorded(false)
-
-            playSound(RECORD_ERROR)
-
-
-        } else {
-            animationHelper?.setStartRecorded(false)
-
-            if (!isSwiped)
-                playSound(RECORD_FINISHED)
-        }
-
         if (recorder != null) {
             recorder?.stopRecording()
             recorder = null
@@ -327,9 +310,27 @@ class RecordView : RelativeLayout {
         counterTime?.stop()
         slideToCancelLayout!!.stopShimmerAnimation()
 
+        //the audio file is less than a second
+        if (!isLessThanSecondAllowed && isLessThanOneSecond(elapsedTime) && !isSwiped) {
+            if (recordListener != null)
+                recordListener!!.onLessThanSecond()
 
-        if (recordListener != null && !isSwiped)
-            recordListener?.onFinish(elapsedTime, audioPath)
+            animationHelper?.setStartRecorded(false)
+
+            playSound(RECORD_ERROR)
+
+
+        } else {
+            animationHelper?.setStartRecorded(false)
+
+            if (!isSwiped)
+                playSound(RECORD_FINISHED)
+
+            if (recordListener != null && !isSwiped)
+                recordListener?.onFinish(elapsedTime, audioPath)
+
+        }
+
 
     }
 

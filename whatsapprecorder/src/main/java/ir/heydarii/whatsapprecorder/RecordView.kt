@@ -6,6 +6,8 @@ import android.media.AudioFormat
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.os.Environment
+import android.os.Handler
+import android.os.Looper
 import android.os.SystemClock
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -30,10 +32,13 @@ import java.util.*
  * Edited and added some features by Pouya Heydari
  */
 
+const val LESS_THAN_A_MINUTE_TIME = 1200
+
 class RecordView : RelativeLayout {
     private var smallBlinkingMic: ImageView? = null
     private var basketImg: ImageView? = null
     private var counterTime: Chronometer? = null
+    private var timer = Timer()
     private var slideToCancel: TextView? = null
     private var slideToCancelLayout: ShimmerLayout? = null
     private var arrow: ImageView? = null
@@ -157,7 +162,7 @@ class RecordView : RelativeLayout {
 
 
     private fun isLessThanOneSecond(time: Long): Boolean {
-        return time <= 1200
+        return time <= LESS_THAN_A_MINUTE_TIME
     }
 
 
@@ -209,15 +214,24 @@ class RecordView : RelativeLayout {
         showViews()
 
         animationHelper!!.animateSmallMicAlpha()
+
+
         counterTime!!.base = SystemClock.elapsedRealtime()
         startTime = System.currentTimeMillis()
         counterTime!!.start()
-        counterTime?.setOnChronometerTickListener {
 
-            elapsedTime = System.currentTimeMillis() - startTime
+        timer = Timer()
 
-            recordListener?.onTikListener(elapsedTime)
-        }
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                Handler(Looper.getMainLooper()).post {
+                    elapsedTime = System.currentTimeMillis() - startTime
+                    recordListener?.onTikListener(elapsedTime)
+                }
+
+            }
+
+        }, 1000)
         isSwiped = false
         startRecording()
 
@@ -254,7 +268,9 @@ class RecordView : RelativeLayout {
 
                 animationHelper!!.moveRecordButtonAndSlideToCancelBack(recordBtn, slideToCancelLayout!!, initialX, difX)
 
-                counterTime!!.stop()
+                stopTimerAndChorno()
+
+
                 slideToCancelLayout!!.stopShimmerAnimation()
                 isSwiped = true
 
@@ -307,7 +323,11 @@ class RecordView : RelativeLayout {
             animationHelper?.clearAlphaAnimation(true)
 
         animationHelper?.moveRecordButtonAndSlideToCancelBack(recordBtn, slideToCancelLayout!!, initialX, difX)
-        counterTime?.stop()
+
+
+        stopTimerAndChorno()
+
+
         slideToCancelLayout!!.stopShimmerAnimation()
 
         //the audio file is less than a second
@@ -439,6 +459,15 @@ class RecordView : RelativeLayout {
         val file = File(Environment.getExternalStorageDirectory().absolutePath, "$timeStamp.wav")
         audioPath = file.path
         return file
+    }
+
+    fun stopTimerAndChorno() {
+        counterTime?.stop()
+        try {
+            timer.cancel()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
 }

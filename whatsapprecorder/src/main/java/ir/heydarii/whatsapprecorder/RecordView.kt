@@ -100,15 +100,15 @@ class RecordView : RelativeLayout {
 
         if (attrs != null && defStyleAttr == -1 && defStyleRes == -1) {
             val typedArray = context.obtainStyledAttributes(
-                attrs, R.styleable.RecordView,
-                defStyleAttr, defStyleRes
+                    attrs, R.styleable.RecordView,
+                    defStyleAttr, defStyleRes
             )
 
 
             val slideArrowResource = typedArray.getResourceId(R.styleable.RecordView_slide_to_cancel_arrow, -1)
             val slideToCancelText = typedArray.getString(R.styleable.RecordView_slide_to_cancel_text)
             val slideMarginRight =
-                typedArray.getDimension(R.styleable.RecordView_slide_to_cancel_margin_right, 30f).toInt()
+                    typedArray.getDimension(R.styleable.RecordView_slide_to_cancel_margin_right, 30f).toInt()
             val counterTimeColor = typedArray.getColor(R.styleable.RecordView_counter_time_color, -1)
             val arrowColor = typedArray.getColor(R.styleable.RecordView_slide_to_cancel_arrow_color, -1)
 
@@ -231,7 +231,7 @@ class RecordView : RelativeLayout {
 
             }
 
-        }, 1000,1000)
+        }, 1000, 1000)
         isSwiped = false
         startRecording()
 
@@ -287,9 +287,9 @@ class RecordView : RelativeLayout {
                 //if statement is to Prevent Swiping out of bounds
                 if (motionEvent.rawX < initialX) {
                     recordBtn.animate()
-                        .x(motionEvent.rawX)
-                        .setDuration(0)
-                        .start()
+                            .x(motionEvent.rawX)
+                            .setDuration(0)
+                            .start()
 
 
                     if (difX == 0f)
@@ -297,9 +297,9 @@ class RecordView : RelativeLayout {
 
 
                     slideToCancelLayout!!.animate()
-                        .x(motionEvent.rawX - difX)
-                        .setDuration(0)
-                        .start()
+                            .x(motionEvent.rawX - difX)
+                            .setDuration(0)
+                            .start()
 
                 }
 
@@ -440,16 +440,16 @@ class RecordView : RelativeLayout {
 
     private fun setupRecorder() {
         recorder = OmRecorder.wav(
-            PullTransport.Default(mic(), PullTransport.OnAudioChunkPulledListener { }), file()
+                PullTransport.Default(mic(), PullTransport.OnAudioChunkPulledListener { }), file()
         )
     }
 
     private fun mic(): PullableSource {
         return PullableSource.Default(
-            AudioRecordConfig.Default(
-                MediaRecorder.AudioSource.MIC, AudioFormat.ENCODING_PCM_16BIT,
-                AudioFormat.CHANNEL_IN_MONO, 44100
-            )
+                AudioRecordConfig.Default(
+                        MediaRecorder.AudioSource.MIC, AudioFormat.ENCODING_PCM_16BIT,
+                        AudioFormat.CHANNEL_IN_MONO, 44100
+                )
         )
     }
 

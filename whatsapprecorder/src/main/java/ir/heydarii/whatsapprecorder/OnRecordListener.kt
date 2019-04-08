@@ -2,6 +2,7 @@ package ir.heydarii.whatsapprecorder
 
 /**
  * Created by Devlomi on 24/08/2017.
+ * Edited and improved by Pouya Heydari.
  */
 
 interface OnRecordListener {

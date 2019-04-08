@@ -109,11 +109,11 @@ class RecordButton : AppCompatImageView, View.OnTouchListener, View.OnClickListe
     }
 
 
-     fun startScale() {
+    fun startScale() {
         scaleAnim!!.start()
     }
 
-     fun stopScale() {
+    fun stopScale() {
         scaleAnim!!.stop()
     }
 

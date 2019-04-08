@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android"
-    android:ordering="sequentially"
-    android:interpolator="@android:anim/decelerate_interpolator">
+    android:interpolator="@android:anim/decelerate_interpolator"
+    android:ordering="sequentially">
 
-    <set android:ordering="together"
+    <set
+        android:ordering="together"
         android:repeatMode="reverse">
 
         <objectAnimator
             android:duration="500"
             android:propertyName="translationY"
+            android:repeatMode="reverse"
             android:valueFrom="0"
             android:valueTo="-400"
-            android:valueType="floatType"
-            android:repeatMode="reverse"/>
+            android:valueType="floatType" />
 
-        <set android:ordering="together"
-            android:duration="500">
+        <set
+            android:duration="500"
+            android:ordering="together">
             <objectAnimator
 
                 android:propertyName="scaleX"
@@ -38,14 +40,15 @@
             android:valueType="floatType" />
     </set>
 
-    <set android:ordering="together"
-        android:duration ="500">
+    <set
+        android:duration="500"
+        android:ordering="together">
 
         <objectAnimator
             android:propertyName="translationY"
             android:valueFrom="-400"
             android:valueTo="0"
-            android:valueType="floatType"/>
+            android:valueType="floatType" />
 
         <set android:ordering="together">
             <objectAnimator

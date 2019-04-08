@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WhatsAppLikeVoiceRecorder</string>
+    <string name="slide_to_cancel">Slide To Cancel</string>
 </resources>

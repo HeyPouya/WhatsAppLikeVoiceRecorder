@@ -14,7 +14,7 @@ This library helps you to record the voice, with the style of whatsapp.
 ##### It is fully integrated with Kotlin and androidX.
 
 
-<img src="https://raw.githubusercontent.com/SirLordPouya/AndroidAppUpdater/master/Screenshot_1.png" width="250"> <img src="https://raw.githubusercontent.com/SirLordPouya/AndroidAppUpdater/master/Screenshot_2.png" width="250"> <img src="https://raw.githubusercontent.com/SirLordPouya/AndroidAppUpdater/master/Screenshot_3.png" width="250">
+<img src="https://raw.githubusercontent.com/SirLordPouya/WhatsAppLikeVoiceRecorder/master/voice_record.gif" width="250"> 
 
 ## Releases:
 
